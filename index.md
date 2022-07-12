@@ -15,8 +15,8 @@ layout: default
 * __Instructor__: [Nathan Green](https://iris.ucl.ac.uk/iris/browse/profile?upi=NGGRE44)
 
 
-[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program.html)
-[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+[random link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program.html)
+[random link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
 
 
 Learn about the data science of health economics modelling workflow in R.

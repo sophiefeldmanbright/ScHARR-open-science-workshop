@@ -3,42 +3,44 @@ title: Home
 layout: default
 ---
 
-# Health economics modelling in R
+# Health economics modelling Project workflow skills in R
 
 {% include figure.html img="destinations-stockholm-banner-mobile-1024x553.jpg" alt="intro image here" caption="Stockholm" width="75%" %}
 
 > Karolinska Institutet and University College London will be hosting a course on health economics modelling in R.
 
-* __Where__: Karolinska Institutet, Solna (see [program](https://n8thangreen.github.io/Stockholm-health-economics-course/content/program.html) for details of lecture rooms)
-* __Date__: 9<sup>th</sup>-10<sup>th</sup> June 2022
-* __Time__: 9:00 - 17:00
+* __Where__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/Stockholm-health-economics-course/content/program.html) for details of lecture rooms)
+* __Date__: 3<sup>rd</sup> August 2022
+* __Time__: 09:00-17:30 
 * __Instructor__: [Nathan Green](https://iris.ucl.ac.uk/iris/browse/profile?upi=NGGRE44)
 
 
-Learn about health economics modelling and how to implement a range of models in R.
-The first day of the course will consist of lectures giving a grounding in health economics modelling for cost-effectiveness analyses from a Bayesian perspective.
-The second day of the course will consist of computer labs in which models presented in Day 1 are implemented in R.
+Learn about the data science of health economics modelling workflow in R.
 
 ## Prerequisites
 * __Day 1__: No health economics background is assumed. Basic statistics and probabilty is preferable and ideally some Bayesian inference.
-* __Day 2__: Health economics modelling covered in Day 1 and basic R programming knowledge, including use of different types, reading and writing data, loops, writing functions.
 
-## Lecture topics
-* Introduction to health economic evaluations (HEE)
-* Bayesian inference and Markov Chain Monte Carlo (MCMC) for HEE
-* Decision tree and Markov modelling in HEE
+# Learning Objectives
+ 
+From basic principles to advanced graphics. You will be able to 
+
+* Write `clean code'
+* Understand package workflows in RStudio
+* Write Functions
+* Use tidyverse
+* Do basic debugging
+* Document your code
+* Create a GitHub page
+* Create visualisations
+* Make a simple Shiny app
+
 
 
 ## Software
 Required software (for day 2):
 * R (free general statistical software)
-* OpenBUGS (free software for Bayesian analysis)
-* JAGS (alternative software for Bayesian analysis) – probably the easiest option for Linux or Mac users
 
-We suggest all participants attending day 2 bring a laptop on which they have installed R (along with the `BCEA` package) and OpenBUGS and/or JAGS.
-
-Course faculty will assist you with the installation during the course if needed. Contact [Enoch Yi-Tung Chen](mailto:enoch.yitung.chen@ki.se) if you need help with installation prior to the course.
-
+We suggest all participants bring a laptop on which they have installed R.
 
 
 ### Installation
@@ -46,23 +48,46 @@ The following sets out a basic installation process:
 
 If necessary [download and install R](https://www.r-project.org/) and potentially a user interface to R like [RStudio](https://www.rstudio.com/).
 
-[Download and install JAGS](https://mcmc-jags.sourceforge.io/) as per operating system requriements;
-and/or [OpenBUGS](https://openbugs.net/w/Downloads).
+Once R and Rstudio are both installed, if you open RStudio and things have gone according to plan then in the console you will see something like the following:
 
-Install additional R packages: e.g., in R `install.packages("rjags")` and `install.packages("R2OpenBUGS")`.
+```
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+```
+
+### Install Necessary Packages
+Open RStudio and paste the following code into your console, then press Enter to run it:
+
+
+```{r, eval = FALSE}
+# Download packages from CRAN
+
+install.packages(c("devtools", "knitr", "magrittr", "sf", "sp", "rmarkdown", "usethis", "ggplot2", "dplyr", "zoo", "reshape2", "scales", "maptools",
+                   "readxl", "rgdal"))
+
+```
+
+These are the main packages for the workshop.
+If we require more then we can either install them from the web or from e.g. a USB if we have them.
+ 
+
+<br>
 
 ## Target audience
-The course is open to everyone with an interest in health economics modelling. The primary target audience is researchers knowledgeable about statistical modelling who are interested in learning health economics modelling. That is, we assume participants have prior knowledge of statistics but do not assume prior knowledge of health economics.
-
-## Course certificate
-Each participant will receive a certificate of attendance. There is no examination. The course is not an official university course and completion of the course does not automatically entitle academic credits.
-
-## Registration
-Registration: [Register via Google forms](https://forms.gle/iWhDxiLWY4nGW5JEA)
-
-Cost: No charge to participants
-
-Please register before June 1st. Class size is limited on day 2 (hands-on computer exercises). If the course is oversubscribed, priority will be given to staff and students at Karolinska Institutet.  
+The course is open to everyone with an interest in health economics modelling.
 
 {% include toc.html %}
 

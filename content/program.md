@@ -11,42 +11,76 @@ topics: Cost-effectiveness analysis; R software
 
 The first session (9-11 on day 1) is open to anyone interested in listening to an overview of the field. Registration is not required for attending this first session.
 
-### Day 1 (Thursday 9<sup>th</sup> June 2022)
-* 9:00-9:10 Welcome and introductions
-* 9:10-10:00 Introduction to health economic evaluations
-* 10:00-11:00 Cost and cost-utility data
+Our agenda is below. 
 
-BREAK
+<br>
 
-* 11:30-12:30 Model error and structural uncertainty
+### Thursday 3<sup>rd</sup> August 2022
 
-LUNCH
+Pre-reading
 
-* 1:30-2:30 Decision trees in HEE
-* 2:30-3:30 Markov models in HEE
+- `r xfun::embed_file('Thieme-2018-Significance.pdf', text = "R generation, Significance Magazine")`
 
-BREAK
+<br>
 
-* 4:00-5:00 Review and wrap up
 
-### Day 2 (Friday 10<sup>th</sup> June 2022)
+* Introducing the Markov cost-effectiveness model 9:30-9:45
+  + slides:
+    + 
+* Writing clean code 9:45-10:15
+  + slides:
+    + 
+  + exercises:
+    + 
+  
+* Package workflows 10:15-10:45
+  + slides:
+      + 
+  + exercises:
+      + 
+* Functions 10:45-11:00
+    + slides:
+      + 
+    + exercises:
+      + 
+* `tidyverse` 11:00-11:15
+    + slides:
+      + xx
+    + exercises:
+      + xx
 
-[Practical workbook](../practicals.pdf)
+_BREAK_ 11:15-11:30
 
-* 9:00-9:10 Welcome and introductions
-* 9:10-10:00 Building a basic decision tree in R ([Files on GitHub](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/decision_trees) or [.zip](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/decision_trees.zip))
-* 10:00-11:00 Building more complex tree in R
+* Basic debugging 11:30-12:00
+    + slides:
+      + xx
+    + exercises:
+      + xx
 
-BREAK
+_LUNCH_
 
-* 11:30-12:30 Building a simple Markov model in R ([Files on GitHub](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/markov_models) or [.zip](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/markov_models.zip))
+* Documenting code/literate programming with `RMarkdown` 1:00-2:00
+    + slides:
+      + xx
+    + exercises:
+      + xx
+* GitHub pages with `pkgdown` 2:00-2:30
+    + slides:
+      + xx
+    + exercises:
+      + xx
 
-LUNCH
+_BREAK_ 2:30-2:45
 
-* 1:30-2:30 Building a more complex (Bayesian) Markov model in R ([Files on GitHub](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/8_markov_bayesian) or [.zip](https://github.com/n8thangreen/Stockholm-health-economics-course/tree/main/practical_resources/8_markov_bayesian.zip))
-* 2:30-3:30 Sensitivity analysis
-
-BREAK
-
-* 4:00-5:00 Visualising cost-effectiveness analyses with the `BCEA` package
-* 5:00 Wrap up and thanks
+* Visualisation with `ggplot2` 2:45-3:45
+    + slides:
+      + xx
+    + exercises:
+      + xx
+* Shiny apps with `rshiny` 3:45-4:30
+    + slides:
+      + xx
+    + exercises:
+      + xx
+      
+_WRAP-UP_ 4:30-4:45

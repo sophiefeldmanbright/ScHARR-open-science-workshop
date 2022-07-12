@@ -9,15 +9,14 @@ layout: default
 
 > Karolinska Institutet and University College London will be hosting a course on health economics modelling in R.
 
-* __Where__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/Stockholm-health-economics-course/content/program.html) for details of lecture rooms)
-[correct link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/program.html)
+* __Where__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/program.html) for details of lecture rooms)
 * __Date__: 3<sup>rd</sup> August 2022
 * __Time__: 09:00-17:30 
 * __Instructor__: [Nathan Green](https://iris.ucl.ac.uk/iris/browse/profile?upi=NGGRE44)
 
 
-[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/resources/2-clean code.html)
-[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/resources/2-clean code)
+[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program.html)
+[rendom link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
 
 
 Learn about the data science of health economics modelling workflow in R.
@@ -77,7 +76,7 @@ Type 'q()' to quit R.
 Open RStudio and paste the following code into your console, then press Enter to run it:
 
 
-```{r, eval = FALSE}
+```r
 # Download packages from CRAN
 
 install.packages(c("devtools", "knitr", "magrittr", "sf", "sp", "rmarkdown", "usethis", "ggplot2", "dplyr", "zoo", "reshape2", "scales", "maptools",

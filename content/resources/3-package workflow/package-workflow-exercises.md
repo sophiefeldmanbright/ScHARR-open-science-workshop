@@ -1,6 +1,5 @@
 ---
 title: Program - Health economics modelling in R
-nav: Program
 topics: Cost-effectiveness analysis; R software
 ---
 
@@ -16,13 +15,6 @@ Our agenda is below.
 <br>
 
 ### Thursday 3<sup>rd</sup> August 2022
-
-Pre-reading
-
-- `r xfun::embed_file('Thieme-2018-Significance.pdf', text = "R generation, Significance Magazine")`
-
-<br>
-
 
 * Introducing the Markov cost-effectiveness model 9:30-9:45
   + slides:

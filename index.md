@@ -5,9 +5,7 @@ layout: default
 
 # Health economics modelling Project workflow skills in R
 
-{% include figure.html img="destinations-stockholm-banner-mobile-1024x553.jpg" alt="intro image here" caption="Stockholm" width="75%" %}
-
-> Karolinska Institutet and University College London will be hosting a course on health economics modelling in R.
+{% include figure.html img="data-science-workflow.png" alt="intro image here" caption="Data science workflow" width="75%" %}
 
 * __Where__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/program.html) for details of lecture rooms)
 * __Date__: 3<sup>rd</sup> August 2022

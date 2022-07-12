@@ -17,70 +17,51 @@ Our agenda is below.
 
 ### Thursday 3<sup>rd</sup> August 2022
 
-Pre-reading
-
-- `r xfun::embed_file('Thieme-2018-Significance.pdf', text = "R generation, Significance Magazine")`
-
-<br>
-
 
 * Introducing the Markov cost-effectiveness model 9:30-9:45
-  + slides:
-    + 
-* Writing clean code 9:45-10:15
-  + slides:
-    + 
   + exercises:
-    + 
+    + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+* Writing clean code 9:45-10:15
+  + exercises:
+    + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
   
 * Package workflows 10:15-10:45
-  + slides:
-      + 
   + exercises:
-      + 
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+
 * Functions 10:45-11:00
-    + slides:
-      + 
     + exercises:
-      + 
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+
 * `tidyverse` 11:00-11:15
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
 
 _BREAK_ 11:15-11:30
 
 * Basic debugging 11:30-12:00
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
 
 _LUNCH_
 
 * Documenting code/literate programming with `RMarkdown` 1:00-2:00
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+
 * GitHub pages with `pkgdown` 2:00-2:30
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
 
 _BREAK_ 2:30-2:45
 
 * Visualisation with `ggplot2` 2:45-3:45
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+
 * Shiny apps with `rshiny` 3:45-4:30
-    + slides:
-      + xx
     + exercises:
-      + xx
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean code/program)
+
       
 _WRAP-UP_ 4:30-4:45

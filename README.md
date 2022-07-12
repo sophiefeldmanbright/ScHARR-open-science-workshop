@@ -1,2 +1,2 @@
-# Stockholm Health Economics Course
-### 9th - 10th June 2022
+# ScHARR Health Economics Course
+### 3rd August 2022

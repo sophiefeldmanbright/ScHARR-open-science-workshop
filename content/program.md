@@ -6,10 +6,8 @@ topics: Cost-effectiveness analysis; R software
 
 ### Lecture rooms
 
-* Day 1: 9:00-17:00 Lecture hall [Petrén](https://medarbetare.ki.se/petren), Nobels väg 12B, KI Solna
-* Day 2: 9:00-17:00 Room [Marie](https://staff.ki.se/marie), Ground floor in Widerströmska huset, Tomtebodavägen 18a, KI Solna
+* Day 1: 9:30-17:00 Lecture hall [Petrén](https://medarbetare.ki.se/petren), Nobels väg 12B, KI Solna
 
-The first session (9-11 on day 1) is open to anyone interested in listening to an overview of the field.
 Our agenda is below. 
 
 <br>

@@ -1,0 +1,38 @@
+---
+title: "Debugging in R"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this practical we will introduce and practise basic debugging in R and RStudio.
+We will use the cost-effectiveness Markov model code to demonstrate this.
+
+First source the file `ce_markov_debug1.R` by opening it and either clicking the source button in the top left or using the keyboard shortcut  _Ctrl+Shift+Enter_ or run
+
+```{r}
+source("ce_markov_debug1.R")
+```
+in the correct folder for you.
+
+Open up the scripts `debugging_script.R` run it.
+You should get this error
+
+```
+Error in cycle_state_costs[i, ] <- (state_c_matrix[treatment = i, ] %*%  : 
+  number of items to replace is not a multiple of replacement length
+```
+
+Lets investigate...
+
+## Using `browser()` and `debug()`
+
+The functions `browser()` and `debug()` are simple to use and very powerful at identiying the source of an error.
+
+```{r}
+debug(ce_markov)
+```

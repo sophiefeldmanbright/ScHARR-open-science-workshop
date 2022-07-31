@@ -1,0 +1,179 @@
+---
+title: "Exercises: Writing functions in R"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+In this document we will learn how to write functions in R.
+You can write your own functions in order to make repetitive operations using a single command.
+
+### An ICER function
+
+Let’s start by defining a function and the input parameter(s) that the user will feed to the function. Afterwards you will define the operation that you desire to program in the body of the function within curly braces (`{}`). Finally, you need to assign the result (or output) of your function in the return statement.
+
+We are going to define a function that calculates an ICER
+
+```{r}
+calc_ICER <- function(delta_e, delta_c) {
+  return(delta_c/delta_e)
+}
+```
+
+We define `calc_ICER` by assigning it to the output of `function`. The list of argument names are contained within parentheses. Next, the body of the function–the statements that are executed when it runs–is contained within curly braces (`{}`). The statements in the body are indented by two spaces, which makes the code easier to read but does not affect how the code operates.
+
+When we call the function, the values we pass to it are assigned to those variables so that we can use them inside the function. Inside the function, we use a `return` statement to send a result back to whoever asked for it.
+
+In R, it is not necessary to include the `return` statement. R automatically returns whichever variable is on the last line of the body of the function. While in the learning phase, we will explicitly define the `return` statement.
+
+* Let’s try running our function. Calling our own function is no different from calling any other function:
+
+```{r, eval=FALSE}
+calc_ICER(0.9, 100)
+```
+
+## Function composition
+
+Now we can see how to create a function that take the individual costs and effectiveness and creates the incremental values
+
+```{r}
+delta_ce <- function(e1, c1, e0, c0) {
+  delta_e <- e1 - e0
+  delta_c <- c1 - c0
+  return(c(delta_e, delta_c))
+}
+```
+
+* Test this
+
+```{r, eval=FALSE}
+delta_ce(0.9, 100, 0.5, 50)
+```
+
+* What about calculating the ICER from the individual $c$s and $e$s?
+
+We could write a new function or we could _compose_ the two functions we have already created. That is
+
+```{r}
+ce_to_ICER <- function(e1, c1, e0, c0) {
+  incr_ce <- delta_ce(e1, c1, e0, c0)
+  icer <- calc_ICER(incr_ce[1], incr_ce[2])
+  return(icer)
+}
+```
+
+```{r, eval=FALSE}
+ce_to_ICER(0.9, 100, 0.5, 50)
+```
+
+This is our first taste of how larger programs are built: we define basic operations, then combine them in ever-larger chunks to get the effect we want. Real-life functions will usually be larger than the ones shown here–typically half a dozen to a few dozen lines–but they shouldn’t ever be much longer than that, or the next person who reads it won’t be able to understand what’s going on.
+
+Alternatively to how we have performed the calculation above, we could have _nested_ the functions.
+
+* Naively this may look as follows. Try this
+
+```{r eval=FALSE}
+calc_ICER(delta_ce(0.9, 100, 0.5, 50))
+```
+
+__Can you see what the problem is?__
+
+The output for `delta_ce()`, which is vector of two numbers, doesn't match with the input for `calc_ICER()`, which expects the numbers of two separate arguments and so it throws an error.
+
+One way around this is for `delta_ce` to return a `list` object instead like this
+
+```{r}
+delta_ce2 <- function(e1, c1, e0, c0) {
+  delta_e <- e1 - e0
+  delta_c <- c1 - c0
+  return(list(delta_e = delta_e,
+              delta_c = delta_c))
+}
+```
+
+and then we can use the useful `do.call()` function which pass each element of a list into a function as if they we provided as separate arguments, just as `calc_ICER()` wants them.
+
+```{r, eval=FALSE}
+do.call(calc_ICER, args = delta_ce2(0.9, 100, 0.5, 50))
+```
+
+Another alternative is to make it so that `calc_ICER()` takes the vector as input.
+
+```{r}
+calc_ICER2 <- function(deltas) {
+  return(deltas[2]/deltas[1])
+}
+```
+
+```{r eval=FALSE}
+calc_ICER2(delta_ce(0.9, 100, 0.5, 50))
+```
+
+This sort of fiddly complication is a good example of the kind of design decision that you have to make all the time when writing functions.
+
+
+Generally speaking, you should be careful not to nest too many function calls at once - it can become confusing and difficult to read!
+
+### Pipe operators
+
+A way to make nested functions easier to read is to _pipe_ functions together, where the output of the left hand function is _piped_ into the next right hand function.
+There are two pipe operators in R.
+The native base R version is newer and looks like this `|>` so
+
+```{r eval=FALSE}
+delta_ce(0.9, 100, 0.5, 50) |> calc_ICER2()
+```
+
+The older `magrittr` package pipe is used throughout the `tidyverse` and especially in the `dplyr` package. This looks like this `%>%` which gives
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(dplyr)
+delta_ce(0.9, 100, 0.5, 50) %>% calc_ICER2()
+```
+
+Pipes can make code a lot easier to read and they're great for data analysis.
+In packages they can be harder to debug because they chain together multiple operations.
+
+__Can you write a function to calculate INMB? What design choices will you make? Can you reuse existing code?__
+
+```{r echo=FALSE}
+calc_INMB <- function(delta_e, delta_c, k = 20000) {
+  return(delta_e*k - delta_c)
+}
+
+# wrapper function using original function
+calc_INMB2 <- function(deltas) {
+  calc_INMB(deltas[1], deltas[2])
+}
+```
+
+```{r echo=FALSE, eval=FALSE}
+# separate arguments
+do.call(calc_INMB, delta_ce2(0.9, 100, 0.5, 50))
+
+# single argument
+calc_INMB2(delta_ce(0.9, 100, 0.5, 50))
+
+# piped functions
+delta_ce(0.9, 100, 0.5, 50) |> calc_INMB2()
+```
+
+
+## Function factories
+
+We can think of the INMB calculation in the same way as `ce_to_ICER()`
+
+```{r}
+ce_to_INMB <- function(e1, c1, e0, c0) {
+  delta_ce(e1, c1, e0, c0) |>
+    calc_INMB2()
+}
+```
+
+When we do this can see the similarity between the different calculations.
+We shall use this example to demonstrate something called a _function factory_.
+
+

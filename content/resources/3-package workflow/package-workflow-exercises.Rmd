@@ -1,0 +1,133 @@
+---
+title: "Exercises: R Project workflow "
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create a project
+
+We are going to create an R project from scratch and then practise the "lather, rinse, repeat" workflow.
+
+First things first, we need to name our package.
+There are three formal requirements:
+
+* The name can only consist of letters, numbers, and periods, i.e., ..
+* It must start with a letter.
+* It cannot end with a period.
+
+__Choose a name by first checking with the [available package](https://cran.r-project.org/web/packages/available/index.html).__
+
+```{r available, eval=FALSE}
+# install if required
+library(available)
+
+# choose your own name e.g.
+available("HTAmodel")
+```
+
+__Explore what names can and can't be used for packages__
+
+
+## Package creation
+
+There's more than one way of creating a package in R. To start we will use the `usethis` package.
+
+
+```{r create-package, eval=FALSE}
+usethis::create_package(path = "HTAmodel")
+```
+
+An extension to `create_package()` exists called `create_tidy_package()`.
+
+__Have a look and see what the difference is between these two using the help document.__
+
+An alternative to making a full blown R package is to make an R _project_.
+You can do this as follows
+
+```{r create-project, eval=FALSE}
+usethis::create_project(path = "HTAproject")
+```
+
+__Create an R project and see what the difference between a project and package is by looking at the folder structure. When do you think using one over the other is a good idea?__
+
+An alternative may to create an R package is via the RStudio menus and the new project Wizard
+
+_File > New Project > Existing or New Directory> R Package_
+
+__Try this out__
+
+You can now launch your new R project by double-clicking on the `.Rproj` file or selecting it in the _File > Open Project_ drop down menu in RStudio.
+
+(N.B. You can set up a launcher app to find `.Rproj` files too to make things even more efficient (e.g [Alfred in macOS](https://www.alfredapp.com/)).)
+
+When you open a `.Rproj` this will open the package with the working directly of you package folder. You can set the package options to automatically load data or open scripts for you. It can also save your history and other things when you exit. I prefer to turn all of this off so that the session starts from scratch each time and it is more reproducable.
+
+Got to
+_Tools > Project Options >_ to see the different options available.
+
+These can be set individually for each package or as default for all packages.
+
+## Package development
+
+The key package for creating packages is `usethis` and for package development it is `devtools`.
+In particular 
+
+```{r eval=FALSE}
+devtools::load_all()
+```
+
+`load_all()` roughly simulates what happens when a package is installed and loaded with library() except it is your own package during the development stage. This is really useful for seeing the effect of incremental changes on your code e.g. you can pick up errors early.
+
+You can mimics what it would be like if someone else were to load your package.
+
+There are 3 ways to use `load_all`. Try out each one:
+
+* Keyboard shortcut: _Cmd+Shift+L_ (macOS), _Ctrl+Shift+L_ (Windows, Linux)
+* Build pane’s _More_ … menu
+* Drop down menu _Build > Load All_
+
+To test this out we will make some changes to your skeleton package.
+
+__Copy the `ce_markov.R` file from the exercises package-workflow folder into the `R/` folder of your package and run `load_all()`__
+
+The `R/` folder is where all of your package functions should live. Now open the `ce_markov.R` file to and we will automatically create some documentation using the roxygen syntax. We can do this by using the drop down menu
+
+_Code > Insert Roxygen Skeleton_
+
+The keyboard short cut for this is _Ctrl_Alt+Shift+R_
+
+This will create a basic function documentation (more on this later!).
+Now we want to create the help file documentation using the roxygen code we've just created.
+This is done with the
+
+```{r eval=FALSE}
+devtools::document()
+```
+
+Alternatively, you can use the drop down menu
+
+_Build > Document_
+
+or the short cut keys 
+
+_Ctrl + Shift + D_
+
+If you now look in the _Files_ pane in RStudio you will see a new folder called `man`. This contains the automatically generated help file documents in `.Rd` format. If you open up `ce_markov.Rd` you will see what this type of file looks like. Notice that it says _do not edit by hand_. If you did then this would only get written over when you run `load_all()` again.
+
+Every time you run `load_all()` R will check the function for you.
+Every time you run `document()` R will update the function documentation for you.
+
+You can see the help documenation in the _Help_ panel by typing
+
+```{r eval=FALSE}
+?ce_markov
+```
+
+__Practise changing the roxygen in the function script and running through the workflow.__
+
+__You could also create a new function and do the same steps.__
+
+

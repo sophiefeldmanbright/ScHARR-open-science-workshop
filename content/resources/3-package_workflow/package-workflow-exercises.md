@@ -1,3 +1,5 @@
+# Exercises: R Project workflow
+
 ## Create a project
 
 We are going to create an R project from scratch and then practise the

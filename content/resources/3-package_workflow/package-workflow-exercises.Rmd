@@ -1,9 +1,11 @@
 ---
-title: "Exercises: R Project workflow "
+title: "Exercises: R Project workflow"
 output:
   md_document:
     variant: markdown_github
 ---
+
+# Exercises: R Project workflow
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

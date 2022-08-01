@@ -9,6 +9,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Exercises: Introduction to dplyr
+
 ## Introduction
 
 The dplyr package provides simple “verbs”, functions that correspond to the most common data manipulation tasks, to help you translate your thoughts into code.

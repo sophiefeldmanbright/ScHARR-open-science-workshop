@@ -9,6 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Exercises: Writing functions in R
 
 In this document we will learn how to write functions in R.
 You can write your own functions in order to make repetitive operations using a single command.

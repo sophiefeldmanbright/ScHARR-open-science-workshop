@@ -1,3 +1,5 @@
+# Exercises: Writing functions in R
+
 In this document we will learn how to write functions in R. You can
 write your own functions in order to make repetitive operations using a
 single command.
@@ -211,7 +213,7 @@ INMB_stat
     ##     delta_ce(e1, c1, e0, c0) |> 
     ##       stat_fn()
     ##   }
-    ## <environment: 0x0000028c54025df8>
+    ## <environment: 0x000002123ab40650>
 
 Now we can use this *manufactured* function to obtain the output value.
 

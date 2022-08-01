@@ -1,3 +1,5 @@
+# Exercises: Unit testing in R
+
 In this document we will learn how to use unit testing in R with the
 testthat package.
 

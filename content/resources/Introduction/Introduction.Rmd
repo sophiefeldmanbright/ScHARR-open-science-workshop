@@ -1,0 +1,26 @@
+---
+title: ' Introduction  '
+author: Nathan Green
+date: 2022-08-01
+output:
+  xaringan::moon_reader:
+  lib_dir: libs
+  nature:
+    highlightStyle: github
+    highlightLines: true
+    countIncrementalSlides: false
+---
+
+![](assets/img/image1.png)
+
+---
+#  Timetable 
+
+
+
+---
+#  Webpage 
+
+https://github.com/n8thangreen/ScHARR-open-science-workshop
+![](assets/img/image2.png)
+[https://github.com/n8thangreen/ScHARR-open-science-workshop](https://github.com/n8thangreen/ScHARR-open-science-workshop)

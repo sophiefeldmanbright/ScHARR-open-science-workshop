@@ -9,6 +9,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Debugging in R
+
 ## Introduction
 
 In this practical we will introduce and practise basic debugging in R and RStudio.

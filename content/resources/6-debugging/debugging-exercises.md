@@ -1,3 +1,5 @@
+# Debugging in R
+
 ## Introduction
 
 In this practical we will introduce and practise basic debugging in R

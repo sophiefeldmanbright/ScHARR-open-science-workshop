@@ -8,7 +8,7 @@ topics: Cost-effectiveness analysis; R software
 
 * [The New Bath Hotel, Matlock](https://newbathhotelandspa.com/)
 
-The agenda is below. 
+The agenda is below.
 
 <br>
 
@@ -17,12 +17,12 @@ The agenda is below.
 
 * Introducing the Markov cost-effectiveness model 9:30-9:45
   + exercises:
-    + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/1-intro_Markov_model/program)
-    
+    + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/1-intro_Markov_model/intro-markov-models)
+
 * Writing clean code 9:45-10:15
   + exercises:
     + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/2-clean_code/clean-code-exercises)
-  
+
 * Package workflows 10:15-10:45
   + exercises:
       + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/3-package_workflow/package-workflow-exercises)
@@ -50,14 +50,8 @@ _LUNCH_
 
 _BREAK_ 2:30-2:45
 
-* Documenting code/literate programming with `RMarkdown` 2:45-3:30
+* Documenting code/literate programming with `RMarkdown` 2:45-3:45
     + exercises:
       + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/7-literate programming/literate-programming-exercises)
 
-* Visualisation with `ggplot2` 3:30-4:30
-    + exercises:
-      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/9-ggplot2/ggplot2-excercises)
-
-      
-      
-_WRAP-UP_ 4:30-4:45
+_Recap and Q&A Session_ 3:45-4:30

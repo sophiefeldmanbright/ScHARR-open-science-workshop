@@ -1,6 +1,8 @@
 ---
 title: "Exercises: Unit testing in R"
-output: github_document
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}

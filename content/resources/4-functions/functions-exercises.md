@@ -1,6 +1,3 @@
-Exercises: Writing functions in R
-================
-
 In this document we will learn how to write functions in R. You can
 write your own functions in order to make repetitive operations using a
 single command.
@@ -64,10 +61,7 @@ delta_ce <- function(e1, c1, e0, c0) {
 delta_ce(0.9, 100, 0.5, 50)
 ```
 
--   What about calculating the ICER from the individual
-    ![c](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;c "c")s
-    and
-    ![e](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;e "e")s?
+-   What about calculating the ICER from the individual *c*s and *e*s?
 
 We could write a new function or we could *compose* the two functions we
 have already created. That is
@@ -217,7 +211,7 @@ INMB_stat
     ##     delta_ce(e1, c1, e0, c0) |> 
     ##       stat_fn()
     ##   }
-    ## <environment: 0x00000253ed37b718>
+    ## <environment: 0x0000028c54025df8>
 
 Now we can use this *manufactured* function to obtain the output value.
 

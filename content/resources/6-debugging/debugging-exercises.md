@@ -1,6 +1,3 @@
-Debugging in R
-================
-
 ## Introduction
 
 In this practical we will introduce and practise basic debugging in R
@@ -209,7 +206,7 @@ cycle_state_costs
 ```
 
 we see that this has 46 rows which is a remarkable coincidence. We can
-hypothesis that the rows and columns have gotten mixed up somewhere
+hypothesise that the rows and columns have gotten mixed up somewhere
 along the way earlier in the code and the error is thrown later on when
 we try to use these objects.
 

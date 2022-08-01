@@ -1,6 +1,3 @@
-Exercises: Introduction to dplyr
-================
-
 ## Introduction
 
 The dplyr package provides simple “verbs”, functions that correspond to

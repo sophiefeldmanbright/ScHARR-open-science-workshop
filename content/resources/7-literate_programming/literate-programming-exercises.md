@@ -1,78 +1,213 @@
----
-title: Program - Health economics modelling in R
-topics: Cost-effectiveness analysis; R software
----
+# Exercises: RMarkdown
 
-### Lecture rooms
+In this practical we will introduce the basics of using RMarkdown and
+some of its features.
 
-* Day 1: 9:00-17:00 Lecture hall [Petrén](https://medarbetare.ki.se/petren), Nobels väg 12B, KI Solna
-* Day 2: 9:00-17:00 Room [Marie](https://staff.ki.se/marie), Ground floor in Widerströmska huset, Tomtebodavägen 18a, KI Solna
+## Introduction
 
-The first session (9-11 on day 1) is open to anyone interested in listening to an overview of the field. Registration is not required for attending this first session.
+R Markdown is a file format for making dynamic documents with R. An R
+Markdown document is written in markdown (an easy-to-write plain text
+format) and contains *chunks* of embedded R code.
 
-Our agenda is below. 
+An RMarkdown document is rendered by *knitting* the file.
 
-<br>
+The `rmarkdown` package will call the `knitr` package. `knitr` will run
+each chunk of R code in the document and append the results of the code
+to the document next to the code chunk. This workflow saves time and
+facilitates reproducible reports.
 
-### Thursday 3<sup>rd</sup> August 2022
+Consider how authors typically include graphs (or tables, or numbers) in
+a report. The author makes the graph, saves it as a file, and then copy
+and pastes it into the final report. This process relies on manual
+labour. If the data changes, the author must repeat the entire process
+to update the graph.
 
-* Introducing the Markov cost-effectiveness model 9:30-9:45
-  + slides:
-    + 
-* Writing clean code 9:45-10:15
-  + slides:
-    + 
-  + exercises:
-    + 
-  
-* Package workflows 10:15-10:45
-  + slides:
-      + 
-  + exercises:
-      + 
-* Functions 10:45-11:00
-    + slides:
-      + 
-    + exercises:
-      + 
-* `tidyverse` 11:00-11:15
-    + slides:
-      + xx
-    + exercises:
-      + xx
+In the R Markdown paradigm, each report contains the code it needs to
+make its own graphs, tables, numbers, etc. The author can automatically
+update the report by re-knitting.
 
-_BREAK_ 11:15-11:30
+You can manually render an R Markdown file with `rmarkdown::render()`.
 
-* Basic debugging 11:30-12:00
-    + slides:
-      + xx
-    + exercises:
-      + xx
+## Creating a R Markdown document
 
-_LUNCH_
+To create an R Markdown report, open a plain text file and save it with
+the extension *.Rmd*. You can open a plain text file in your scripts
+editor by clicking *File \> New File \> Text File* in the RStudio tool
+bar, or using the *Wizard* by selecting *File \> New File \> R Markdown
+…*
 
-* Documenting code/literate programming with `RMarkdown` 1:00-2:00
-    + slides:
-      + xx
-    + exercises:
-      + xx
-* GitHub pages with `pkgdown` 2:00-2:30
-    + slides:
-      + xx
-    + exercises:
-      + xx
+#### Rendering
 
-_BREAK_ 2:30-2:45
+To go from R Markdown to pdf or html you can click on the *Knit* icon
+thats above the file in the scripts editor. A drop down menu will let
+you select the type of output that you want. RStudio will show you a
+preview of the new output and save the output file in your working
+directory.
 
-* Visualisation with `ggplot2` 2:45-3:45
-    + slides:
-      + xx
-    + exercises:
-      + xx
-* Shiny apps with `rshiny` 3:45-4:30
-    + slides:
-      + xx
-    + exercises:
-      + xx
-      
-_WRAP-UP_ 4:30-4:45
+## Text formatting
+
+Markdown is designed to be easy to read and easy to write. It is also
+very easy to learn.
+
+Go to the drop down menu and select *Help \> Markdown Quck Reference*.
+This will open a cheat sheet in the Help pane.
+
+## Code chunks
+
+To run code inside an R Markdown document, you need to insert a chunk.
+There are three ways to do so:
+
+-   The keyboard shortcut Cmd/Ctrl + Alt + I
+
+-   The *Insert* button icon in the editor tool bar
+
+-   By manually typing the chunk delimiters `{r} and`.
+
+Think of a chunk like a function. A chunk should be relatively
+self-contained, and focussed around a single task.
+
+### Chunk names
+
+Chunks can be given an optional name: \`\`\`{r by-name}. This has three
+advantages:
+
+-   You can more easily navigate to specific chunks using the drop-down
+    code navigator in the bottom-left of the script editor:
+
+-   Graphics produced by the chunks will have useful names that make
+    them easier to use elsewhere. More on that in other important
+    options.
+
+-   You can set up networks of cached chunks to avoid re-performing
+    expensive computations on every run.
+
+### Chunk options
+
+Chunk output can be customised. A full list is here
+<http://yihui.name/knitr/options/>.
+
+The most important set of options controls if your code block is
+executed and what results are inserted in the finished report:
+
+-   `eval = FALSE` prevents code from being evaluated. (And obviously if
+    the code is not run, no results will be generated). This is useful
+    for displaying example code, or for disabling a large block of code
+    without commenting each line.
+
+-   `include = FALSE` runs the code, but doesn’t show the code or
+    results in the final document. Use this for setup code that you
+    don’t want cluttering your report.
+
+-   `echo = FALSE` prevents code, but not the results from appearing in
+    the finished file. Use this when writing reports aimed at people who
+    don’t want to see the underlying R code.
+
+-   `message = FALSE` or `warning = FALSE` prevents messages or warnings
+    from appearing in the finished file.
+
+-   `results = 'hide'` hides printed output; `fig.show = 'hide'` hides
+    plots.
+
+-   `error = TRUE` causes the render to continue even if code returns an
+    error. This is rarely something you’ll want to include in the final
+    version of your report, but can be very useful if you need to debug
+    exactly what is going on inside your .Rmd. It’s also useful if
+    you’re teaching R and want to deliberately include an error. The
+    default, error = FALSE causes knitting to fail if there is a single
+    error in the document.
+
+## Tables in R Markdown
+
+By default, R Markdown prints data frames and matrices as you’d see them
+in the console. If you prefer that data be displayed with additional
+formatting you can use the `knitr::kable` function. For even deeper
+customisation, consider the `xtable`, `stargazer`, `pander`, `tables`,
+and `ascii` packages
+
+## Inline code
+
+To embed R code in a line of text, surround the code with a pair of back
+ticks and the letter r, like this.
+
+``` r
+`r  ICER is 200/0.5`
+```
+
+knitr will replace the inline code with its result in your final
+document (inline code is always replaced by its result). The result will
+appear as if it were part of the original text
+
+## YAML header
+
+A YAML header to control how rmarkdown renders your *.Rmd* file. A YAML
+header is a section of key: value pairs surrounded by — marks.
+
+The `output:` value determines what type of output to convert the file
+into when you call `rmarkdown::render()`.
+
+`output:` recognizes the following values:
+
+-   `html_document`, which will create HTML output (default)
+-   `pdf_document`, which will create PDF output
+-   `word_document`, which will create Word output
+
+If you use the RStudio IDE knit button to render your file, the
+selection you make in the gui will override the output: setting.
+
+### Putting it all together in an example report
+
+-   Create a new R Markdown document with main sections with headings
+    Introduction, Data, Methods, Results and Conclusions.
+
+-   Include some subheadings like Model Fitting and Recommendations,
+    say.
+
+-   In the Conclusions make numbered list of the main findings.
+
+-   Include a link to the Briggs papers on which the original
+    cost-effectiveness analysis is based i.e. *An Introduction to Markov
+    Modelling for Economic Evaluation, Andrew Briggs and Mark Sculpher*
+
+-   Change the date of the document so that it will always be today’s
+    date using the following
+
+``` r
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+```
+
+Pick a date format that you prefer
+
+-   Include the plot created with the following code
+
+``` r
+plot(10, 0.1,
+     xlab = "Incremental QALYs",
+     ylab = "Incremental costs",
+     xlim = c(-1, 12),
+     ylim = c(-0.1, 0.2),
+     pch = 20)
+abline(a = 0, b = 0.02)
+```
+
+![](literate-programming-exercises_files/figure-markdown_github/ceplane-1.png)
+
+-   Resize this plot using the chunk options
+
+-   Create a table that shows the cost and QALYs for two interventions
+    and their incremental values and ICER. Here something to start with.
+
+| intervention | cost | QALY | delta c | delta QALY | ICER |
+|--------------|------|------|---------|------------|------|
+
+-   Now create the same table but do this programmatically. That is
+    create a data frame with the entries and then use `knitr::kable` to
+    convert to markdown.
+
+Here’s an example
+
+``` r
+data.frame(intervention = c("drug a", "drug b"),
+           cost = c(100, 50),
+           QALY = c(20, 10)) |> 
+knitr::kable()
+```

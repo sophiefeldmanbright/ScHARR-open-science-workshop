@@ -8,14 +8,16 @@ demonstrate this.
 
 Open up the scripts `debugging_script.R` run it.
 
-This will first source the files `ce_markov_debug1.R` and
-`p_matrix_cycle.R` by running
+We want to use the ‘broken’ functions for this practical so we will
+first source the files `ce_markov_debug1.R` and `p_matrix_cycle.R` by
+running
 
 ``` r
 source("ce_markov_debug1.R")
+source("p_matrix_cycle.R")
 ```
 
-Make sure this is in the correct folder for you.
+Make sure this point to the correct folder for you.
 
 This is the main script from which to run the analysis which calls our
 functions. You should get the following error

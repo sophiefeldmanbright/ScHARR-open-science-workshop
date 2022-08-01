@@ -26,8 +26,6 @@ In the R Markdown paradigm, each report contains the code it needs to
 make its own graphs, tables, numbers, etc. The author can automatically
 update the report by re-knitting.
 
-You can manually render an R Markdown file with `rmarkdown::render()`.
-
 ## Creating a R Markdown document
 
 To create an R Markdown report, open a plain text file and save it with
@@ -42,7 +40,8 @@ To go from R Markdown to pdf or html you can click on the *Knit* icon
 thats above the file in the scripts editor. A drop down menu will let
 you select the type of output that you want. RStudio will show you a
 preview of the new output and save the output file in your working
-directory.
+directory. You can manually render an R Markdown file with
+`rmarkdown::render()`.
 
 ## Text formatting
 
@@ -196,8 +195,10 @@ abline(a = 0, b = 0.02)
 -   Create a table that shows the cost and QALYs for two interventions
     and their incremental values and ICER. Here something to start with.
 
-| intervention | cost | QALY | delta c | delta QALY | ICER |
-|--------------|------|------|---------|------------|------|
+``` r
+intervention | cost | QALY | delta c | delta QALY | ICER
+-------------|------|------|---------|------------|-----
+```
 
 -   Now create the same table but do this programmatically. That is
     create a data frame with the entries and then use `knitr::kable` to

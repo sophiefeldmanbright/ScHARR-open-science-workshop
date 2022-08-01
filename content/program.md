@@ -52,6 +52,6 @@ _BREAK_ 2:30-2:45
 
 * Documenting code/literate programming with `RMarkdown` 2:45-3:45
     + exercises:
-      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/7-literate programming/literate-programming-exercises)
+      + [link](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/resources/7-literate_programming/literate-programming-exercises)
 
 _Recap and Q&A Session_ 3:45-4:30

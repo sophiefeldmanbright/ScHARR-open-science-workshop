@@ -1,188 +1,197 @@
-Exercises: Writing functions in R
+Exercises: Unit testing in R
 ================
 
-In this document we will learn how to write functions in R. You can
-write your own functions in order to make repetitive operations using a
-single command.
+In this document we will learn how to use unit testing in R with the
+testthat package.
 
-### An ICER function
+### Setting up unit testing
 
-Let’s start by defining a function and the input parameter(s) that the
-user will feed to the function. Afterwards you will define the operation
-that you desire to program in the body of the function within curly
-braces (`{}`). Finally, you need to assign the result (or output) of
-your function in the return statement.
+You will need to have already set up a package containing functions to
+test (in the `R/` folder). See the Workflow practical for how to do this
+if you haven’t yet. In the same way that a package can be set up using
+the `usethis` package helper functions we can also easily set up the
+unit testing framework with this package.
 
-We are going to define a function that calculates an ICER
-
-``` r
-calc_ICER <- function(delta_e, delta_c) {
-  return(delta_c/delta_e)
-}
-```
-
-We define `calc_ICER` by assigning it to the output of `function`. The
-list of argument names are contained within parentheses. Next, the body
-of the function–the statements that are executed when it runs–is
-contained within curly braces (`{}`). The statements in the body are
-indented by two spaces, which makes the code easier to read but does not
-affect how the code operates.
-
-When we call the function, the values we pass to it are assigned to
-those variables so that we can use them inside the function. Inside the
-function, we use a `return` statement to send a result back to whoever
-asked for it.
-
-In R, it is not necessary to include the `return` statement. R
-automatically returns whichever variable is on the last line of the body
-of the function. While in the learning phase, we will explicitly define
-the `return` statement.
-
--   Let’s try running our function. Calling our own function is no
-    different from calling any other function:
+From inside of your package run
 
 ``` r
-calc_ICER(0.9, 100)
+usethis::use_testthat()
 ```
 
-## Function composition
+This does three things:
 
-Now we can see how to create a function that take the individual costs
-and effectiveness and creates the incremental values
+-   Creates a `tests/testthat directory`
+
+-   Adds testthat to the `Suggests` field in the `DESCRIPTION`
+
+-   Creates a file `tests/testthat.R` that runs all your tests when you
+    execute `devtools::check()`
+
+### First unit test
+
+We will write some tests for the `p_matrix_cycle()` function which
+created a transition probability matrix. Make sure that this function is
+included in your package and you have run `load_all()`. To create our
+first test file write
 
 ``` r
-delta_ce <- function(e1, c1, e0, c0) {
-  delta_e <- e1 - e0
-  delta_c <- c1 - c0
-  return(c(delta_e, delta_c))
-}
+usethis::use_test("p_matrix_cycle")
 ```
 
--   Test this
+Here, we name this file the same as our function name. This creates a
+new file under `tests/ testthat` named `test-p_matrix_cycle.R`, and the
+file pre-populates with an example test that we can replace.
+
+For our first unit test, we create an object that contains the expected
+results of an example function execution, and then we assess the
+correctness of the output using the `testthat::expect_*` functions.
+
+We name the overall test chunk `assess_p_matrix_cycle` - you can name
+this whatever would be useful for you to read in a testing log. We first
+need to provide some input values for the test.
 
 ``` r
-delta_ce(0.9, 100, 0.5, 50)
+t_names <- c("without_drug", "with_drug")
+n_treatments <- length(t_names)
+
+s_names  <- c("Asymptomatic_disease", "Progressive_disease", "Dead")
+n_states <- length(s_names)
+
+p_matrix <- array(data = 0,
+                  dim = c(n_states, n_states, n_treatments),
+                  dimnames = list(from = s_names,
+                                  to = s_names,
+                                  t_names))
+# transition matrix variables
+tpProg <- 0.01
+tpDcm <- 0.15
+tpDn <- 0.0138
+effect <- 0.5
 ```
 
--   What about calculating the ICER from the individual
-    ![c](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;c "c")s
-    and
-    ![e](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;e "e")s?
-
-We could write a new function or we could *compose* the two functions we
-have already created. That is
+In this test, we evaluate if the function returns the correct type of
+object, in this case, a double
 
 ``` r
-ce_to_ICER <- function(e1, c1, e0, c0) {
-  incr_ce <- delta_ce(e1, c1, e0, c0)
-  icer <- calc_ICER(incr_ce[1], incr_ce[2])
-  return(icer)
-}
+test_that("assess_p_matrix_cycle", {
+  res <- p_matrix_cycle(p_matrix, age = 50, cycle = 1)
+  expect_type(res, "double")
+})
 ```
+
+There are two ways to execute the test.
+
+-   The *Run Tests* button on the top right hand side of the testing
+    script executes the tests in this script only (not all tests in the
+    package), and executes this in a fresh R environment.
+
+-   Submitting `devtools::test()` (or *Ctrl + Shift + T*) executes all
+    tests in the package in your global environment.
+
+#### Testing for errors
+
+Next, let us test what happens when we change the ages argument. What
+would we expect to happen for the following ages? It clearly makes no
+sense to have someone aged -1 or 1000 years old so what should the code
+do if this is the case? Error with a helpful message? Use a default
+value instead and give a warning message?
 
 ``` r
-ce_to_ICER(0.9, 100, 0.5, 50)
+test_that("assess_p_matrix_cycle", {
+  res <- p_matrix_cycle(p_matrix, age = -1, cycle = 1)
+  # expect_error(res)?
+  # expect_warning(res)?
+  # expect_message(res)?
+  
+  res <- p_matrix_cycle(p_matrix, age = 1000, cycle = 1)
+  expect_type(res, "double")
+})
 ```
 
-This is our first taste of how larger programs are built: we define
-basic operations, then combine them in ever-larger chunks to get the
-effect we want. Real-life functions will usually be larger than the ones
-shown here–typically half a dozen to a few dozen lines–but they
-shouldn’t ever be much longer than that, or the next person who reads it
-won’t be able to understand what’s going on.
-
-Alternatively to how we have performed the calculation above, we could
-have *nested* the functions.
-
--   Naively this may look as follows. Try this
+In fact you’ll see that the function just carries on regardless without
+indicating to us that anything is wrong and instead has `NA` values for
+some of the probabilities. This is more obvious in the above case but
+see what happens for aged 20 years old individuals.
 
 ``` r
-calc_ICER(delta_ce(0.9, 100, 0.5, 50))
+test_that("assess_p_matrix_cycle", {
+  res <- p_matrix_cycle(p_matrix, age = 20, cycle = 1)
+  expect_type(res, "double")
+})
 ```
 
-**Can you see what the problem is?**
+**Why is this?**
 
-The output for `delta_ce()`, which is vector of two numbers, doesn’t
-match with the input for `calc_ICER()`, which expects the numbers of two
-separate arguments and so it throws an error.
+The ages look up table only starts at 34 years old so a 20 year old is
+treated the same as 1000 year old.
 
-One way around this is for `delta_ce` to return a `list` object instead
-like this
+Let’s add in some code to `p_matrix_cycle` to catch this.
+
+Include the following to the first line and then `load_all()` the
+package.
 
 ``` r
-delta_ce2 <- function(e1, c1, e0, c0) {
-  delta_e <- e1 - e0
-  delta_c <- c1 - c0
-  return(list(delta_e = delta_e,
-              delta_c = delta_c))
-}
+if (age < 34) stop("age must be at between 34 and 100")
 ```
 
-and then we can use the useful `do.call()` function which pass each
-element of a list into a function as if they we provided as separate
-arguments, just as `calc_ICER()` wants them.
+Now if we rerun the tests we can check that a 20 year old throws an
+error and what the error message is.
 
 ``` r
-do.call(calc_ICER, args = delta_ce2(0.9, 100, 0.5, 50))
+test_that("assess_p_matrix_cycle", {
+  res <- p_matrix_cycle(p_matrix, age = 20, cycle = 1)
+  expect_error(res, regexp = "age must be at between 34 and 100")
+})
 ```
 
-Another alternative is to make it so that `calc_ICER()` takes the vector
-as input.
+#### Test for probabilities
+
+`p_matrix_cycle` returns a probability matrix so let us now test that
+they are indeed probabilities.
+
+-   The first criteria is that all probabilities sum to one.
+
+`p_matrix_cycle` returns a three dimensional array so we need to sum
+across the columns to give the total probability of transitioning from a
+state. The base R `apply` function can do this if we provide the
+‘margins’ i.e. the dimensions to apply the function over. This should
+return a matrix of all ones which we can simplify with the `c()` command
+so that we can compare with what we expect.
 
 ``` r
-calc_ICER2 <- function(deltas) {
-  return(deltas[2]/deltas[1])
-}
+test_that("probabilities", {
+  res <- p_matrix_cycle(p_matrix, age = 40, cycle = 1)
+  
+  sum_from <- apply(res, MARGIN = c(1,3), sum)
+  
+  expect_equal(c(sum_from), rep(1, times = 6))
+})
 ```
+
+-   The second criteria is that each probability is between zero and
+    one.
+
+We can take advantage of how R vectorises things. If we make a logical
+conditional statement on the array then R applies this element-wise so
+that each probability is individually assessed and the format of the
+original array is maintained. This means that if we execute `res <= 1` R
+returns a 3 by 3 by 2 array of `TRUE` or `FALSE` entries. We can now
+simply test if `all` of the entries are true.
 
 ``` r
-calc_ICER2(delta_ce(0.9, 100, 0.5, 50))
+test_that("probabilities", {
+  res <- p_matrix_cycle(p_matrix, age = 40, cycle = 1)
+  
+  expect_true(all(res<=1))
+  expect_true(all(res>=0))
+})
 ```
 
-This sort of fiddly complication is a good example of the kind of design
-decision that you have to make all the time when writing functions.
+**Notice that we could have alternatively used the same approach with
+`all()` for the total probabilities summing to one. Can you see how?**
 
-Generally speaking, you should be careful not to nest too many function
-calls at once - it can become confusing and difficult to read!
-
-### Pipe operators
-
-A way to make nested functions easier to read is to *pipe* functions
-together, where the output of the left hand function is *piped* into the
-next right hand function. There are two pipe operators in R. The native
-base R version is newer and looks like this `|>` so
-
-``` r
-delta_ce(0.9, 100, 0.5, 50) |> calc_ICER2()
-```
-
-The older `magrittr` package pipe is used throughout the `tidyverse` and
-especially in the `dplyr` package. This looks like this `%>%` which
-gives
-
-``` r
-library(dplyr)
-delta_ce(0.9, 100, 0.5, 50) %>% calc_ICER2()
-```
-
-Pipes can make code a lot easier to read and they’re great for data
-analysis. In packages they can be harder to debug because they chain
-together multiple operations.
-
-**Can you write a function to calculate INMB? What design choices will
-you make? Can you reuse existing code?**
-
-## Function factories
-
-We can think of the INMB calculation in the same way as `ce_to_ICER()`
-
-``` r
-ce_to_INMB <- function(e1, c1, e0, c0) {
-  delta_ce(e1, c1, e0, c0) |>
-    calc_INMB2()
-}
-```
-
-When we do this can see the similarity between the different
-calculations. We shall use this example to demonstrate something called
-a *function factory*.
+There are many more `expect_*` functions to try and you can even make
+your own custom ones. Unit testing is a bit of an art and it is not
+necessary to test absolutely everything although it is also not uncommon
+for the unit tests to be many times longer than the code they are
+testing!

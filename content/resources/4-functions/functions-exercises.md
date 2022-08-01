@@ -185,4 +185,45 @@ ce_to_INMB <- function(e1, c1, e0, c0) {
 
 When we do this can see the similarity between the different
 calculations. We shall use this example to demonstrate something called
-a *function factory*.
+a *function factory*. A function factory is a function that makes
+functions.
+
+``` r
+ce_stat <- function(stat) {
+  stat_fn <- 
+    if (stat == "INMB") {
+      calc_INMB2
+    } else {
+      calc_ICER2}
+  
+  function(e1, c1, e0, c0) {
+    delta_ce(e1, c1, e0, c0) |> 
+      stat_fn()
+  }
+}
+```
+
+``` r
+INMB_stat <- ce_stat("INMB")
+```
+
+We can see that `INMB_stat` is itself a function
+
+``` r
+INMB_stat
+```
+
+    ## function(e1, c1, e0, c0) {
+    ##     delta_ce(e1, c1, e0, c0) |> 
+    ##       stat_fn()
+    ##   }
+    ## <environment: 0x00000253ed37b718>
+
+Now we can use this *manufactured* function to obtain the output value.
+
+``` r
+INMB_stat(0.9, 100, 0.5, 50)
+```
+
+**Repeat for the ICER using the function factory. Can you include a new
+statistic?**

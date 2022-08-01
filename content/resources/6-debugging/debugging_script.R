@@ -1,4 +1,7 @@
 
+source("ce_markov_debug1.R")
+source("p_matrix_cycle.R")
+
 ###################
 ## model set-up
 

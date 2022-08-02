@@ -153,7 +153,7 @@ into when you call `rmarkdown::render()`.
 If you use the RStudio IDE knit button to render your file, the
 selection you make in the gui will override the output: setting.
 
-### Putting it all together in an example report
+## Putting it all together in an example report
 
 -   Create a new R Markdown document with main sections with headings
     Introduction, Data, Methods, Results and Conclusions.
@@ -194,21 +194,22 @@ abline(a = 0, b = 0.02)
 
 -   Create a table that shows the cost and QALYs for two interventions
     and their incremental values and ICER. Here something to start with.
+    What do the colons do?
 
 ``` r
 intervention | cost | QALY | delta c | delta QALY | ICER
--------------|------|------|---------|------------|-----
+-------------|-----:|-----:|---------|------------|-----
 ```
 
 -   Now create the same table but do this programmatically. That is
     create a data frame with the entries and then use `knitr::kable` to
     convert to markdown.
 
-Here’s an example
+Here’s an example template to get you started using `data.frame`:
 
 ``` r
-data.frame(intervention = c("drug a", "drug b"),
-           cost = c(100, 50),
-           QALY = c(20, 10)) |> 
+data.frame(intervention = c("drug a", "drug b"))|> 
 knitr::kable()
 ```
+
+-   What would be an advantage of using `tibble::tribble` here?

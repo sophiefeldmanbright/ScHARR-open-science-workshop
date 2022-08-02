@@ -8,22 +8,54 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This model is based on papers by [Briggs 1998](https://pubmed.ncbi.nlm.nih.gov/10178664/)
+and
+[Briggs 2000](https://pubmed.ncbi.nlm.nih.gov/10977389/)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Data
 
-```{r cars}
-summary(cars)
+# Methods
+
+## Model Fitting
+
+# Results
+
+```{r ceplane, fig.width=5}
+plot(10, 0.1,
+     xlab = "Incremental QALYs",
+     ylab = "Incremental costs",
+     xlim = c(-1, 12),
+     ylim = c(-0.1, 0.2),
+     pch = 20)
+abline(a = 0, b = 0.02)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+intervention | cost | QALY | delta c | delta QALY | ICER
+-------------|------|------|---------|------------|-----
+drug a       | 100  | 0.5  |         |            |
+drug b       | 50   | 0.1  |  50     |  0.4       | 20
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r echo=FALSE}
+data.frame(intervention = c("drug a", "drug b"),
+           cost = c(100,50),
+           QALY = c(0.5,0.1),
+           delta_c = c(NA, 50),
+           delta_QALY = c(NA, 0.4),
+           ICER = c(NA, 20)) |> 
+knitr::kable()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+# can define as it appears in the table
+tibble::tribble(~intervention, ~cost, ~QALY,
+                "drug a", 100, 0.5,
+                "drug b", 50, 0.1)
+```
+
+
+# Conclusions
+
+## Recommendations

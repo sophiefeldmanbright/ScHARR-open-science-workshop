@@ -3,11 +3,12 @@ title: Home
 layout: default
 ---
 
-# Health economics modelling Project workflow skills in R
+# Project workflow skills for health economics modelling in R
 
 {% include figure.html img="data-science-workflow.png" alt="intro image here" caption="Data science workflow" width="75%" %}
 
-* __Where__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/program.html) for details of lecture rooms)
+* __Where__: The New Bath Hotel, Matlock
+* __Participants__: ScHARR, University of Sheffield (see [program](https://n8thangreen.github.io/ScHARR-open-science-workshop/content/program.html) for details of lecture rooms)
 * __Date__: 3<sup>rd</sup> August 2022
 * __Time__: 09:00-17:30 
 * __Instructor__: [Nathan Green](https://iris.ucl.ac.uk/iris/browse/profile?upi=NGGRE44)
@@ -16,29 +17,27 @@ layout: default
 Learn about the data science of health economics modelling workflow in R.
 
 ## Prerequisites
-* __Day 1__: No health economics background is assumed. Basic statistics and probabilty is preferable and ideally some Bayesian inference.
+* Basic R and maths
 
 # Learning Objectives
  
-From basic principles to advanced graphics. You will be able to 
+From basic principles to advanced coding. You will be able to 
 
 * Write `clean code'
 * Understand package workflows in RStudio
 * Write Functions
 * Use tidyverse
 * Do basic debugging
+* Unit testing
 * Document your code
-* Create a GitHub page
-* Create visualisations
-* Make a simple Shiny app
-
 
 
 ## Software
-Required software (for day 2):
+Required software:
 * R (free general statistical software)
+* RStudio
 
-We suggest all participants bring a laptop on which they have installed R.
+We suggest all participants bring a laptop on which they have installed these already.
 
 
 ### Installation
@@ -73,19 +72,22 @@ Open RStudio and paste the following code into your console, then press Enter to
 ```r
 # Download packages from CRAN
 
-install.packages(c("devtools", "knitr", "magrittr", "sf", "sp", "rmarkdown", "usethis", "ggplot2", "dplyr", "zoo", "reshape2", "scales", "maptools",
-                   "readxl", "rgdal"))
+install.packages(c("devtools", "knitr", "magrittr", "rmarkdown", "usethis", "ggplot2", "dplyr", "reshape2", "purrr"))
 
 ```
 
 These are the main packages for the workshop.
 If we require more then we can either install them from the web or from e.g. a USB if we have them.
- 
+
+* The workshop webpage is [here](https://n8thangreen.github.io/ScHARR-open-science-workshop/)
+* The associated GitHub Repository is [here](https://github.com/n8thangreen/ScHARR-open-science-workshop)
+
+We suggest downloading the repo content to your computer, either via `git clone` or the `.zip` folder if you prefer.
 
 <br>
 
 ## Target audience
-The course is open to everyone with an interest in health economics modelling.
+The course is open to everyone with an interest in health economics modelling and R.
 
 {% include toc.html %}
 

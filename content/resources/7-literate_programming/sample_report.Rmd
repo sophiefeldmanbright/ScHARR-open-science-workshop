@@ -22,7 +22,7 @@ and
 
 # Results
 
-```{r ceplane, fig.width=5}
+```{r ceplane, fig.width=5, fig.cap="my plot", }
 plot(10, 0.1,
      xlab = "Incremental QALYs",
      ylab = "Incremental costs",
@@ -50,9 +50,9 @@ knitr::kable()
 
 ```{r}
 # can define as it appears in the table
-tibble::tribble(~intervention, ~cost, ~QALY,
-                "drug a", 100, 0.5,
-                "drug b", 50, 0.1)
+tibble::tribble(~intervention, ~cost, ~QALY, ~delta_c, ~delta_QALY, ~ICER,
+                "drug a",      100,   0.5,   NA,       NA,          NA,
+                "drug b",      50,    0.1,   50,       0.4,         20)
 ```
 
 

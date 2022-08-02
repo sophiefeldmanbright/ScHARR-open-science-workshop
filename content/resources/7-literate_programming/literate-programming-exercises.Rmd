@@ -144,6 +144,7 @@ abline(a = 0, b = 0.02)
 ```
 
 * Resize this plot using the chunk options
+* Add a caption using `fig.cap`
 
 * Create a table that shows the cost and QALYs for two interventions and their incremental values and ICER. Here something to start with. What do the colons do?
 
@@ -163,4 +164,20 @@ knitr::kable()
 ```
 
 * What would be an advantage of using `tibble::tribble` here?
+
+* Some times you just want the R code without any of the extra text. The `purl` function in the `kintr` package takes an input file, extracts the R code in it according to a list of patterns, evaluates the code and writes the output in another file.
+Use `purl` with your R Markdown document.
+
+* Sometimes when a document becomes large it is easier to split it up in to smaller document and then combine these in a top level file. This is possible in R Markdown using _children_ chunks. Simply use the argument `child` assigned to the name of the `Rmd` file and this will be inserted in to the document in place of this chunk.
+
+```{r echo=FALSE, results='asis'}
+
+cat("```{r child = 'mychilddoc.Rmd'}\n ```")
+
+```
+
+Create a Methods block and a Results child chunk for your current document.
+
+This all just the tip of the iceberg. To find out more check out the R Markdown book here https://bookdown.org/yihui/rmarkdown/.
+
 

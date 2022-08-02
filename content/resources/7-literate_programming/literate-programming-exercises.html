@@ -11,7 +11,7 @@
 
 
 
-<title>Cost-effectiveness analysis</title>
+<title>literate-programming-exercises</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -361,27 +361,173 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Cost-effectiveness analysis</h1>
-<h4 class="date">02 August, 2022</h4>
 
 </div>
 
 
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>This model is based on papers by <a href="https://pubmed.ncbi.nlm.nih.gov/10178664/">Briggs 1998</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/10977389/">Briggs 2000</a></p>
+<div id="exercises-rmarkdown" class="section level1">
+<h1>Exercises: RMarkdown</h1>
+<p>In this practical we will introduce the basics of using RMarkdown and
+some of its features.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>R Markdown is a file format for making dynamic documents with R. An R
+Markdown document is written in markdown (an easy-to-write plain text
+format) and contains <em>chunks</em> of embedded R code.</p>
+<p>An RMarkdown document is rendered by <em>knitting</em> the file.</p>
+<p>The <code>rmarkdown</code> package will call the <code>knitr</code>
+package. <code>knitr</code> will run each chunk of R code in the
+document and append the results of the code to the document next to the
+code chunk. This workflow saves time and facilitates reproducible
+reports.</p>
+<p>Consider how authors typically include graphs (or tables, or numbers)
+in a report. The author makes the graph, saves it as a file, and then
+copy and pastes it into the final report. This process relies on manual
+labour. If the data changes, the author must repeat the entire process
+to update the graph.</p>
+<p>In the R Markdown paradigm, each report contains the code it needs to
+make its own graphs, tables, numbers, etc. The author can automatically
+update the report by re-knitting.</p>
 </div>
-<div id="data" class="section level1">
-<h1>Data</h1>
+<div id="creating-a-r-markdown-document" class="section level2">
+<h2>Creating a R Markdown document</h2>
+<p>To create an R Markdown report, open a plain text file and save it
+with the extension <em>.Rmd</em>. You can open a plain text file in your
+scripts editor by clicking <em>File &gt; New File &gt; Text File</em> in
+the RStudio tool bar, or using the <em>Wizard</em> by selecting <em>File
+&gt; New File &gt; R Markdown …</em></p>
+<div id="rendering" class="section level4">
+<h4>Rendering</h4>
+<p>To go from R Markdown to pdf or html you can click on the
+<em>Knit</em> icon thats above the file in the scripts editor. A drop
+down menu will let you select the type of output that you want. RStudio
+will show you a preview of the new output and save the output file in
+your working directory. You can manually render an R Markdown file with
+<code>rmarkdown::render()</code>.</p>
 </div>
-<div id="methods" class="section level1">
-<h1>Methods</h1>
-<div id="model-fitting" class="section level2">
-<h2>Model Fitting</h2>
+</div>
+<div id="text-formatting" class="section level2">
+<h2>Text formatting</h2>
+<p>Markdown is designed to be easy to read and easy to write. It is also
+very easy to learn.</p>
+<p>Go to the drop down menu and select <em>Help &gt; Markdown Quck
+Reference</em>. This will open a cheat sheet in the Help pane.</p>
+</div>
+<div id="code-chunks" class="section level2">
+<h2>Code chunks</h2>
+<p>To run code inside an R Markdown document, you need to insert a
+chunk. There are three ways to do so:</p>
+<ul>
+<li><p>The keyboard shortcut Cmd/Ctrl + Alt + I</p></li>
+<li><p>The <em>Insert</em> button icon in the editor tool bar</p></li>
+<li><p>By manually typing the chunk delimiters
+<code>{r} and</code>.</p></li>
+</ul>
+<p>Think of a chunk like a function. A chunk should be relatively
+self-contained, and focussed around a single task.</p>
+<div id="chunk-names" class="section level3">
+<h3>Chunk names</h3>
+<p>Chunks can be given an optional name: ```{r by-name}. This has three
+advantages:</p>
+<ul>
+<li><p>You can more easily navigate to specific chunks using the
+drop-down code navigator in the bottom-left of the script
+editor:</p></li>
+<li><p>Graphics produced by the chunks will have useful names that make
+them easier to use elsewhere. More on that in other important
+options.</p></li>
+<li><p>You can set up networks of cached chunks to avoid re-performing
+expensive computations on every run.</p></li>
+</ul>
+</div>
+<div id="chunk-options" class="section level3">
+<h3>Chunk options</h3>
+<p>Chunk output can be customised. A full list is here <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+<p>The most important set of options controls if your code block is
+executed and what results are inserted in the finished report:</p>
+<ul>
+<li><p><code>eval = FALSE</code> prevents code from being evaluated.
+(And obviously if the code is not run, no results will be generated).
+This is useful for displaying example code, or for disabling a large
+block of code without commenting each line.</p></li>
+<li><p><code>include = FALSE</code> runs the code, but doesn’t show the
+code or results in the final document. Use this for setup code that you
+don’t want cluttering your report.</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from
+appearing in the finished file. Use this when writing reports aimed at
+people who don’t want to see the underlying R code.</p></li>
+<li><p><code>message = FALSE</code> or <code>warning = FALSE</code>
+prevents messages or warnings from appearing in the finished
+file.</p></li>
+<li><p><code>results = &#39;hide&#39;</code> hides printed output;
+<code>fig.show = &#39;hide&#39;</code> hides plots.</p></li>
+<li><p><code>error = TRUE</code> causes the render to continue even if
+code returns an error. This is rarely something you’ll want to include
+in the final version of your report, but can be very useful if you need
+to debug exactly what is going on inside your .Rmd. It’s also useful if
+you’re teaching R and want to deliberately include an error. The
+default, error = FALSE causes knitting to fail if there is a single
+error in the document.</p></li>
+</ul>
 </div>
 </div>
-<div id="results" class="section level1">
-<h1>Results</h1>
+<div id="tables-in-r-markdown" class="section level2">
+<h2>Tables in R Markdown</h2>
+<p>By default, R Markdown prints data frames and matrices as you’d see
+them in the console. If you prefer that data be displayed with
+additional formatting you can use the <code>knitr::kable</code>
+function. For even deeper customisation, consider the
+<code>xtable</code>, <code>stargazer</code>, <code>pander</code>,
+<code>tables</code>, and <code>ascii</code> packages</p>
+</div>
+<div id="inline-code" class="section level2">
+<h2>Inline code</h2>
+<p>To embed R code in a line of text, surround the code with a pair of
+back ticks and the letter r, like this.</p>
+<pre class="r"><code>`r  ICER is 200/0.5`</code></pre>
+<p>knitr will replace the inline code with its result in your final
+document (inline code is always replaced by its result). The result will
+appear as if it were part of the original text</p>
+</div>
+<div id="yaml-header" class="section level2">
+<h2>YAML header</h2>
+<p>A YAML header to control how rmarkdown renders your <em>.Rmd</em>
+file. A YAML header is a section of key: value pairs surrounded by —
+marks.</p>
+<p>The <code>output:</code> value determines what type of output to
+convert the file into when you call
+<code>rmarkdown::render()</code>.</p>
+<p><code>output:</code> recognizes the following values:</p>
+<ul>
+<li><code>html_document</code>, which will create HTML output
+(default)</li>
+<li><code>pdf_document</code>, which will create PDF output</li>
+<li><code>word_document</code>, which will create Word output</li>
+</ul>
+<p>If you use the RStudio IDE knit button to render your file, the
+selection you make in the gui will override the output: setting.</p>
+</div>
+<div id="putting-it-all-together-in-an-example-report" class="section level2">
+<h2>Putting it all together in an example report</h2>
+<ul>
+<li><p>Create a new R Markdown document with main sections with headings
+Introduction, Data, Methods, Results and Conclusions.</p></li>
+<li><p>Include some subheadings like Model Fitting and Recommendations,
+say.</p></li>
+<li><p>In the Conclusions make numbered list of the main
+findings.</p></li>
+<li><p>Include a link to the Briggs papers on which the original
+cost-effectiveness analysis is based i.e. <em>An Introduction to Markov
+Modelling for Economic Evaluation, Andrew Briggs and Mark
+Sculpher</em></p></li>
+<li><p>Change the date of the document so that it will always be today’s
+date using the following</p></li>
+</ul>
+<pre class="r"><code>date: &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</code></pre>
+<p>Pick a date format that you prefer</p>
+<ul>
+<li>Include the plot created with the following code</li>
+</ul>
 <pre class="r"><code>plot(10, 0.1,
      xlab = &quot;Incremental QALYs&quot;,
      ylab = &quot;Incremental costs&quot;,
@@ -389,86 +535,45 @@ pre code {
      ylim = c(-0.1, 0.2),
      pch = 20)
 abline(a = 0, b = 0.02)</code></pre>
-<div class="figure">
-<img src="data:image/png;base64,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" alt="my plot" width="480" />
-<p class="caption">
-my plot
-</p>
-</div>
-<table>
-<thead>
-<tr class="header">
-<th>intervention</th>
-<th>cost</th>
-<th>QALY</th>
-<th>delta c</th>
-<th>delta QALY</th>
-<th>ICER</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>drug a</td>
-<td>100</td>
-<td>0.5</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>drug b</td>
-<td>50</td>
-<td>0.1</td>
-<td>50</td>
-<td>0.4</td>
-<td>20</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th align="left">intervention</th>
-<th align="right">cost</th>
-<th align="right">QALY</th>
-<th align="right">delta_c</th>
-<th align="right">delta_QALY</th>
-<th align="right">ICER</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">drug a</td>
-<td align="right">100</td>
-<td align="right">0.5</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">drug b</td>
-<td align="right">50</td>
-<td align="right">0.1</td>
-<td align="right">50</td>
-<td align="right">0.4</td>
-<td align="right">20</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code># can define as it appears in the table
-tibble::tribble(~intervention, ~cost, ~QALY, ~delta_c, ~delta_QALY, ~ICER,
-                &quot;drug a&quot;,      100,   0.5,   NA,       NA,          NA,
-                &quot;drug b&quot;,      50,    0.1,   50,       0.4,         20)</code></pre>
-<pre><code>## # A tibble: 2 x 6
-##   intervention  cost  QALY delta_c delta_QALY  ICER
-##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
-## 1 drug a         100   0.5      NA       NA      NA
-## 2 drug b          50   0.1      50        0.4    20</code></pre>
-</div>
-<div id="conclusions" class="section level1">
-<h1>Conclusions</h1>
-<div id="recommendations" class="section level2">
-<h2>Recommendations</h2>
+<p><img src="data:image/png;base64,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" /></p>
+<ul>
+<li><p>Resize this plot using the chunk options</p></li>
+<li><p>Add a caption using <code>fig.cap</code></p></li>
+<li><p>Create a table that shows the cost and QALYs for two
+interventions and their incremental values and ICER. Here something to
+start with. What do the colons do?</p></li>
+</ul>
+<pre class="r"><code>intervention | cost | QALY | delta c | delta QALY | ICER
+-------------|-----:|-----:|---------|------------|-----</code></pre>
+<ul>
+<li>Now create the same table but do this programmatically. That is
+create a data frame with the entries and then use
+<code>knitr::kable</code> to convert to markdown.</li>
+</ul>
+<p>Here’s an example template to get you started using
+<code>data.frame</code>:</p>
+<pre class="r"><code>data.frame(intervention = c(&quot;drug a&quot;, &quot;drug b&quot;))|&gt; 
+knitr::kable()</code></pre>
+<ul>
+<li><p>What would be an advantage of using <code>tibble::tribble</code>
+here?</p></li>
+<li><p>Some times you just want the R code without any of the extra
+text. The <code>purl</code> function in the <code>kintr</code> package
+takes an input file, extracts the R code in it according to a list of
+patterns, evaluates the code and writes the output in another file. Use
+<code>purl</code> with your R Markdown document.</p></li>
+<li><p>Sometimes when a document becomes large it is easier to split it
+up in to smaller document and then combine these in a top level file.
+This is possible in R Markdown using <em>children</em> chunks. Simply
+use the argument <code>child</code> assigned to the name of the
+<code>Rmd</code> file and this will be inserted in to the document in
+place of this chunk.</p></li>
+</ul>
+<p><code>{r child = &quot;mychilddoc.Rmd&quot;}</code></p>
+<p>Create a Methods block and a Results child chunk for your current
+document.</p>
+<p>This all just the tip of the iceberg. To find out more check out the
+R Markdown book here .</p>
 </div>
 </div>
 

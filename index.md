@@ -72,7 +72,7 @@ Open RStudio and paste the following code into your console, then press Enter to
 ```r
 # Download packages from CRAN
 
-install.packages(c("devtools", "knitr", "magrittr", "rmarkdown", "usethis", "ggplot2", "dplyr", "reshape2", "purrr"))
+install.packages(c("devtools", "knitr", "magrittr", "rmarkdown", "usethis", "ggplot2", "dplyr", "reshape2", "purrr", "lintr"))
 
 ```
 

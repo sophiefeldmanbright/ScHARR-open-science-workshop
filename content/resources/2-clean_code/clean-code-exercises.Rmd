@@ -2,7 +2,7 @@
 title: "Exercises: Clean code"
 output:
   md_document:
-    variant: markdown_github
+    variant: gfm
 ---
 
 # Exercises: Clean code 
@@ -12,16 +12,17 @@ This practical will introduce you to the idea of clean code and provide practise
 ## Judging clean code
 
 Open up the file `unclean.R` from the workshop folder 2-clean code.
-Skim through the code and identify what you thing could be improved or what looks similar to how you would normally wirte code.
+Skim through the code and identify what you thing could be improved or what looks similar to how you would normally write code.
 
 Now, going through each of these clean code principle below highlight lines of code that you think could be 'cleaner'.
 
-* Reproducability: Code that may work on ones person computer but not on another or not work in the future.
+* Reproducability
+  + Code that may work on ones person computer but not on another or not work in the future.
 
 * Naming
-	+ ambiguous names: is is clear what things are?
+	+ Ambiguous names: is is clear what things are?
 	+ Can a name mean more than one thing?
-	+ is the name consistent?
+	+ Is the name consistent?
 	+ Is there any unnecessary information?  
 
 * Spacing
@@ -38,7 +39,7 @@ We will use the `lintr` package to lint this code.
 # install if needed
 library(lintr)
 
-lint("unclean_nocomments.R")
+lint("unclean.R")
 ```
 
 A new tab will open in the _Console_ part of the screen with a list of issue found by `lintr`.

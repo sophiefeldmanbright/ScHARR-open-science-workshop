@@ -212,7 +212,7 @@ plot(x = q_incr/n_pop, y = c_incr/n_pop,
      ylim = c(0, 10e6/n_pop),
      pch = 16, cex = 1.5,
      xlab = "QALY difference",
-     ylab = "Cost difference (£)",
+     ylab = "Cost difference",
      frame.plot = FALSE)
 abline(a = 0, b = 30000) # Willingness-to-pay threshold
 
@@ -392,9 +392,9 @@ plot(x = q_incr_psa/n_pop, y = c_incr_psa/n_pop,
      pch = 16, cex = 1.2,
      col = "grey",
      xlab = "QALY difference",
-     ylab = "Cost difference (£)",
+     ylab = "Cost difference (?)",
      frame.plot = FALSE)
-abline(a = 0, b = 30000, lwd = 2) # Willingness-to-pay threshold £30,000/QALY
+abline(a = 0, b = 30000, lwd = 2) # Willingness-to-pay threshold ?30,000/QALY
 
 points(x = q_incr/n_pop, y = c_incr/n_pop,
        col = "red",
